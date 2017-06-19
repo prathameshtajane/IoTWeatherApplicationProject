@@ -28,7 +28,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 	protected String[] getServletMappings() {
 		/*
 	        * To inform the application that all of the request will have prefix as "/weatherapi/*"
-	        * This prefix could be different as well
+	        * This prefix could be different  as well
 	        * */
 		return new String[]{"/weatherapi/*"};
 	}
