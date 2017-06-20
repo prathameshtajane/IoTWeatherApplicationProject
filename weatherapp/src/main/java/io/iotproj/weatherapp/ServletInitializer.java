@@ -15,7 +15,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
      * There can be multiple configuration files.
      */
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[]{Application.class};
+		return new Class[]{WebConfig.class,JPAConfig.class};
 	}
 
 	@Override

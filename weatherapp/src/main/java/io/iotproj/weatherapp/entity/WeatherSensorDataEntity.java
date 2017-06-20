@@ -1,25 +1,38 @@
 package io.iotproj.weatherapp.entity;
 
+import java.util.UUID;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+
+@Entity
+@NamedQueries(
+		{
+			@NamedQuery(name="WeatherSensorDataEntity.findAllData",query="SELECT u from WeatherSensorDataEntity u ORDER BY u.sensorId")
+		}
+		)
+
 public class WeatherSensorDataEntity {
 	
+	@Id
 	private String sensorId;
 	private String city;
 	private String description;
 	private int humidity;
 	private int pressure;
 	private int temperature;
-	private String wind;
+	
+	@OneToOne
+	private WeatherSensorDataWindEntity wind;
+	
 	private String timestamp;
 	
-	/*{
-  "city": "Chicago",
-  "description": "scattered clouds",
-  "humidity": 33,
-  "pressure": 1020,
-  "temperature": 25,
-  "wind": {"speed": 3.1,"degree": 240},
-  "timestamp": "2017-02-14T05:48:41.861Z"*/
-
+   public WeatherSensorDataEntity(){
+	   this.sensorId=UUID.randomUUID().toString();
+   }
 	
 	public String getCity() {
 		return city;
@@ -51,12 +64,7 @@ public class WeatherSensorDataEntity {
 	public void setTemperature(int temperature) {
 		this.temperature = temperature;
 	}
-	public String getWind() {
-		return wind;
-	}
-	public void setWind(String wind) {
-		this.wind = wind;
-	}
+	
 	public String getTimestamp() {
 		return timestamp;
 	}
@@ -66,8 +74,13 @@ public class WeatherSensorDataEntity {
 	public String getSensorId() {
 		return sensorId;
 	}
-	public void setSensorId(String sensorId) {
-		this.sensorId = sensorId;
+
+	public WeatherSensorDataWindEntity getWind() {
+		return wind;
+	}
+
+	public void setWind(WeatherSensorDataWindEntity wind) {
+		this.wind = wind;
 	}
 
 }

@@ -67,5 +67,37 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+        
+        
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.5</version>
+        </dependency>
+        
+        <!--
+        In this case we need a new dependency of a module which take care of the persistence.xml since we wont be having
+        that file in this SPRING application.
+        It will bring the JPA specification of its own.It understands about EntityManagerFactory , EntityManager
+        and it helps SPRING to define all of this using JAVA ANNOTATIONS so that we don't have to write
+        persistence.xml
+        Basically we can use the java classes specified in 'spring-orm' to define all of the configuration defined
+        in persistence.xml in SPRING java configuration file.
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.3.6.RELEASE</version>
+        </dependency>
   </dependencies>
 </project>
