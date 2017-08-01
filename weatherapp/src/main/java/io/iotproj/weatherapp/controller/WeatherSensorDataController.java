@@ -4,6 +4,7 @@ import io.iotproj.weatherapp.service.WeatherSensorDataService;
 
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 //@Controller
 //@ResponseBody
 @RestController
+@EnableAutoConfiguration
+
 @RequestMapping(value="/sensordata")
 public class WeatherSensorDataController {
 	
@@ -40,6 +43,34 @@ public class WeatherSensorDataController {
 		return weatherSensorDataService.findOne(wSensorID);
 	}
 	
+	@RequestMapping(
+			method=RequestMethod.GET,
+			value="/totalcount",
+			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Long findTotalCount(){
+		return weatherSensorDataService.count();
+	}
+	
+	
+	@RequestMapping(
+			method=RequestMethod.GET,
+			value="/bulk/{count}",
+			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<WeatherSensorDataEntity> findAllByCount(@PathVariable("count") int count){
+		return weatherSensorDataService.findAllByCount(count);
+	}
+	
+	
+	@RequestMapping(
+			method=RequestMethod.GET,
+			value="/reset",
+			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public void resetWeatherSensorDatabase(){
+		weatherSensorDataService.resetWeatherSensorWindDatabase();
+	}
+	
+	
+
 	@RequestMapping(
 			method=RequestMethod.POST,
 			produces=MediaType.APPLICATION_JSON_UTF8_VALUE,

@@ -3,20 +3,21 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.iotproj</groupId>
-  <artifactId>weatherapp</artifactId>
+  <artifactId>weatherapp-boot</artifactId>
   <version>0.0.1</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
-  <name>weatherapp</name>
-  <url>http://tajane-prathamesh-webdev.herokuapp.com/</url>
+  <name>weatherapp-boot</name>
+  <url>https://github.com/prathameshtajane</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.boot.version>1.5.4.RELEASE</spring.boot.version>
   </properties>
-
+  
   <build>
   	<plugins>
-  		<plugin>
+  	<plugin>
 	  		<groupId>org.apache.maven.plugins</groupId>
 	                <artifactId>maven-compiler-plugin</artifactId>
 	                <version>3.6.1</version>
@@ -29,75 +30,49 @@
 	                </configuration>
   		</plugin>
   		<plugin>
-  				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-maven-plugin</artifactId>
+  			<version>${spring.boot.version}</version>
+  			<configuration>
+  			<executable>true</executable>
+  			<mainClass>io.iotproj.weatherapp.Application</mainClass>
+  			</configuration>
+  			<executions>
+  				<execution>
+  				<goals>
+  					<goal>repackage</goal>
+  				</goals>
+  				</execution>
+  			</executions>
   		</plugin>
   	</plugins>
   </build>
-	
+
   <dependencies>
-  		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.3.6.RELEASE</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>4.3.6.RELEASE</version>
-        </dependency>
-        <!--
-        JACKSON is a library that is used to convert JAVA object into JSON(and vice versa)
-        After this conversion SPRING send it over the network.
-        The request(PUT,POST,PATCH) will have JSON body,JACKSON will be used to convert this JSON
-        request into JAVA object.
-        -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.8.7</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        
-        
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.8.Final</version>
-        </dependency>
-        <dependency>
+  	<dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-web</artifactId>
+    	<version>${spring.boot.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-data-jpa</artifactId>
+	    <version>${spring.boot.version}</version>
+	</dependency>
+  	<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.5</version>
-        </dependency>
-        
-        <!--
-        In this case we need a new dependency of a module which take care of the persistence.xml since we wont be having
-        that file in this SPRING application.
-        It will bring the JPA specification of its own.It understands about EntityManagerFactory , EntityManager
-        and it helps SPRING to define all of this using JAVA ANNOTATIONS so that we don't have to write
-        persistence.xml
-        Basically we can use the java classes specified in 'spring-orm' to define all of the configuration defined
-        in persistence.xml in SPRING java configuration file.
-        -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>4.3.6.RELEASE</version>
-        </dependency>
+    </dependency>
+    <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-devtools</artifactId>
+	    <version>${spring.boot.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-actuator</artifactId>
+	    <version>${spring.boot.version}</version>
+	</dependency>
   </dependencies>
 </project>

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -82,5 +83,6 @@ public class WeatherSensorDataEntity {
 	public void setWind(WeatherSensorDataWindEntity wind) {
 		this.wind = wind;
 	}
+
 
 }
