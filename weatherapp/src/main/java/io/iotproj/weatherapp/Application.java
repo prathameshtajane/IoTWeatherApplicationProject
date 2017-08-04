@@ -7,10 +7,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.context.annotation.Import;
+import org.springframework.core.env.AbstractEnvironment;
+
+import io.iotproj.weatherapp.config.SwaggerConfig;
+import io.iotproj.weatherapp.config.WebConfig;
 
 @SpringBootApplication
 @EnableWebMvc
 @ComponentScan
+@Import({ WebConfig.class, SwaggerConfig.class })
 public class Application extends WebMvcConfigurerAdapter{
 	public static void main(String args[]){
 	SpringApplication.run(Application.class,args);
